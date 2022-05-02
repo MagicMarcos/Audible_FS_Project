@@ -4,7 +4,7 @@ const express = require('express');
 const passport = require('passport');
 // const session = require('express-session');
 // const MongoStore = require('connect-mongo')(session);
-// const methodOverride = require('method-override');
+const methodOverride = require('method-override');
 // const flash = require('express-flash');
 // const logger = require('morgan');
 const connectDB = require('./config/database');
@@ -28,7 +28,7 @@ app.use(express.json());
 // app.use(logger('dev'));
 
 //Use forms for put / delete
-// app.use(methodOverride('_method'));
+app.use(methodOverride('_method'));
 
 // Setup Sessions - stored in MongoDB
 // app.use(
