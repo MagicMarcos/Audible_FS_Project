@@ -85,10 +85,9 @@ exports.postSignUp = (req, res, next) => {
 
   const user = new User({
     name: req.body.name,
-    profileType: req.body.profileType,
+    // TODO: Add profile image
     email: req.body.email,
     password: req.body.password,
-    phoneNumber: req.body.phoneNumber,
   });
 
   User.findOne(
