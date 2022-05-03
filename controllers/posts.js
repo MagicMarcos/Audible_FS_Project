@@ -32,14 +32,20 @@ export const getPost = async (req, res) => {
 
 export const createPost = async (req, res) => {
   try {
+    console.log(
+      '==============================================================='
+    );
+    console.log(req.body);
     const cloudinaryResult = await cloudinary.uploader.upload(req.file.path);
 
     const post = {
-      userId: req.user._id,
-      userName: req.user.name,
+      // userId: req.user._id,
+      // userName: req.user.name,
+      userId: 321321321321,
+      userName: 'boy',
       cloudinaryId: cloudinaryResult.public_id,
       imageUrl: cloudinaryResult.secure_url,
-      title: req.body.tile,
+      title: req.body.title,
       caption: req.body.caption,
       description: req.body.description,
     };

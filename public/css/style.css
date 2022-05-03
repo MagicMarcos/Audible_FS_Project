@@ -39,18 +39,19 @@ body {
   font-size: 12px;
   line-height: 1.4;
   font-family: Helvetica, Arial, sans-serif;
-  background-image: url(https://cdn.pixabay.com/photo/2018/04/11/17/11/background-3311042_1280.jpg);
+  /* background-image: url(https://cdn.pixabay.com/photo/2018/04/11/17/11/background-3311042_1280.jpg); */
+  /* background-color: darkgray; */
 }
 
 /******************************************
 /* LAYOUT
 /*******************************************/
 
-
 .col-12 {
   margin-top: 100px;
 }
-h1, h2 {
+h1,
+h2 {
   color: aliceblue;
   font-size: 100px;
   font-family: 'Quantico', 'DM Serif Display', sans-serif;
