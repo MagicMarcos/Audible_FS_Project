@@ -1,8 +1,8 @@
 const express = require('express');
 
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const passport = require('passport');
-// const session = require('express-session');
+const session = require('express-session');
 // const MongoStore = require('connect-mongo')(session);
 const methodOverride = require('method-override');
 // const flash = require('express-flash');
@@ -18,6 +18,7 @@ require('./config/passport')(passport);
 
 connectDB();
 const mainRoutes = require('./routes/main');
+const postRoutes = require('./routes/posts');
 //Static Folder
 app.use(express.static('public'));
 
@@ -49,6 +50,7 @@ app.use(methodOverride('_method'));
 
 //Setup Routes For Which The Server Is Listening
 app.use('/', mainRoutes);
+app.use('/post', postRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log('Server is running');
