@@ -1,8 +1,8 @@
-const passport = require('passport');
-const validator = require('validator');
-const User = require('../models/User');
+import passport from 'passport';
+import validator from 'validator';
+import User from '../models/User.js';
 
-exports.getLogin = (req, res) => {
+export const getLogin = (req, res) => {
   if (req.user) {
     return res.redirect('/feed');
   }
@@ -44,7 +44,7 @@ exports.getLogin = (req, res) => {
 //   })(req, res, next);
 // };
 
-exports.logout = (req, res) => {
+export const logout = (req, res) => {
   req.logout();
   req.session.destroy(err => {
     if (err)
@@ -54,7 +54,7 @@ exports.logout = (req, res) => {
   });
 };
 
-exports.getSignup = (req, res) => {
+export const getSignup = (req, res) => {
   if (req.user) {
     return res.redirect('/profile');
   }
@@ -63,8 +63,7 @@ exports.getSignup = (req, res) => {
   });
 };
 
-// Student Sign Up
-exports.postSignUp = (req, res, next) => {
+export const postSignUp = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: 'Please enter a valid email address.' });
@@ -85,7 +84,6 @@ exports.postSignUp = (req, res, next) => {
 
   const user = new User({
     name: req.body.name,
-    // TODO: Add profile image
     email: req.body.email,
     password: req.body.password,
   });
