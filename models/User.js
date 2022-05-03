@@ -3,10 +3,9 @@ const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
   name: { type: String },
-  profileType: { type: String },
+  // TODO: Add profile image
   email: { type: String, unique: true },
   password: String,
-  phoneNumber: { type: String },
 });
 
 // Password hash middleware.

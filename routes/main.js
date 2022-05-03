@@ -11,7 +11,7 @@ router.get('/', homeController.getIndex);
 // TODO add AUTH to pages below
 router.get('/feed', postsController.getFeed);
 router.get('/profile', postsController.getProfile);
-router.get('/post', postsController.getPost);
+// router.get('/post', postsController.getPost);
 router.get('/login', authController.getLogin);
 router.get('/signup', authController.getSignup);
 
