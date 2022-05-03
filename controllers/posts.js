@@ -1,68 +1,69 @@
-const cloudinary = require('../middleware/cloudinary');
+import cloudinary from '../middleware/cloudinary.js';
 
 // Models
-const Post = require('../models/Post');
-const Comment = require('../models/Comment');
+import Post from '../models/Post.js';
 
-module.exports = {
-  // renders feed
-  getFeed: async (req, res) => {
-    try {
-      res.render('feed.ejs');
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  // Renders profile page
-  getProfile: async (req, res) => {
-    try {
-      res.render('profile.ejs');
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  // Renders individual post page
-  getPost: async (req, res) => {
-    try {
-      res.render('post.ejs');
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  createPost: async (req, res) => {
-    try {
-      const cloudinaryResult = await cloudinary.uploader.upload(req.file.path);
+// renders feed
+export const getFeed = async (req, res) => {
+  try {
+    res.render('feed.ejs');
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-      const post = {
-        userId: req.user._id,
-        userName: req.user.name,
-        cloudinaryId: cloudinaryResult.public_id,
-        imageUrl: cloudinaryResult.secure_url,
-        title: req.body.tile,
-        caption: req.body.caption,
-        description: req.body.description,
-      };
+// Renders profile page
+export const getProfile = async (req, res) => {
+  try {
+    res.render('profile.ejs');
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-      await Post.create(post);
+// Renders individual post page
+export const getPost = async (req, res) => {
+  try {
+    res.render('post.ejs');
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-      res.redirect(201, '/profile');
-    } catch (error) {
-      console.error(error);
-    }
-  },
+export const createPost = async (req, res) => {
+  try {
+    const cloudinaryResult = await cloudinary.uploader.upload(req.file.path);
 
-  // TODO: Stretch GOAL -> edit post
-  deletePost: async (req, res) => {
-    try {
-      const postId = await Post.findById({ _id: req.params.id });
+    const post = {
+      userId: req.user._id,
+      userName: req.user.name,
+      cloudinaryId: cloudinaryResult.public_id,
+      imageUrl: cloudinaryResult.secure_url,
+      title: req.body.tile,
+      caption: req.body.caption,
+      description: req.body.description,
+    };
 
-      await cloudinary.uploader.destroy(postId.cloudinaryId);
+    await Post.create(post);
 
-      await Post.remove({ _id: postId });
+    res.redirect(201, '/profile');
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-      res.redirect(200, '/profile');
-    } catch (error) {
-      console.error(error);
-    }
-  },
+// TODO: Stretch GOAL -> edit post
+
+export const deletePost = async (req, res) => {
+  try {
+    const postId = await Post.findById({ _id: req.params.id });
+
+    await cloudinary.uploader.destroy(postId.cloudinaryId);
+
+    await Post.remove({ _id: postId });
+
+    res.redirect(200, '/profile');
+  } catch (error) {
+    console.error(error);
+  }
 };

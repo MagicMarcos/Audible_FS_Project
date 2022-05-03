@@ -1,8 +1,8 @@
-const LocalStrategy = require('passport-local').Strategy;
-const mongoose = require('mongoose');
-const User = require('../models/User');
+import { Strategy as LocalStrategy } from 'passport-local';
 
-module.exports = function (passport) {
+import User from '../models/User.js';
+
+const passportConfig = passport => {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
       User.findOne({ email: email.toLowerCase() }, (err, user) => {
@@ -38,3 +38,5 @@ module.exports = function (passport) {
     User.findById(id, (err, user) => done(err, user));
   });
 };
+
+export default passportConfig;

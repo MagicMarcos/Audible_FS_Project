@@ -1,18 +1,20 @@
-const express = require('express');
+import express from 'express';
+import { multerUploadConfig as upload } from '../middleware/multer.js';
+
+import { getPost, createPost, deletePost } from '../controllers/posts.js';
+import { comment } from '../controllers/comment.js';
+import { ensureAuth } from '../middleware/auth.js';
+
 const router = express.Router();
-const upload = require('../middleware/multer');
-const postsController = require('../controllers/posts');
-const commentsController = require('../controllers/comment');
-const { ensureAuth, ensureGuest } = require('../middleware/auth');
 
 //Post Routes
 // TODO: make sure to ensure auth here
-router.get('/:id', postsController.getPost);
+router.get('/', getPost);
 
-router.post('/makepost', upload.single('file'), postsController.createPost);
+router.post('/makepost', upload.single('file'), createPost);
 
-router.post('/:postId', commentsController.comment);
+router.post('/:postId', comment);
 
-router.delete('/deletePost/:id', postsController.deletePost);
+router.delete('/deletePost/:id', deletePost);
 
-module.exports = router;
+export default router;

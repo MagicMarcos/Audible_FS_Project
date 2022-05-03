@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "devStart": "nodemon server.js"
   },
@@ -28,6 +29,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.16"
   }
 }
