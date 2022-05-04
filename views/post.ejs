@@ -1,9 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
   <%-include('partials/head')-%>
-  </head>
+
   <body>
-    <h1>FUkc you</h1>
+    <div class="container position-sticky z-index-sticky top-0">
+      <div class="row">
+        <div class="col-12">
+          <nav
+            class="navbar navbar-expand-lg blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4"
+          >
+            <div class="container-fluid px-0">
+              <a
+                class="navbar-brand font-weight-bolder ms-sm-3"
+                href="https://demos.creative-tim.com/material-kit/index"
+                rel="tooltip"
+                title="Designed and Coded by Creative Tim"
+                data-placement="bottom"
+                target="_blank"
+              >
+                Material Kit 2
+              </a>
+              <button
+                class="navbar-toggler shadow-none ms-2"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navigation"
+                aria-controls="navigation"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon mt-2">
+                  <span class="navbar-toggler-bar bar1"></span>
+                  <span class="navbar-toggler-bar bar2"></span>
+                  <span class="navbar-toggler-bar bar3"></span>
+                </span>
+              </button>
+              <div
+                class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100"
+                id="navigation"
+              >
+                <ul class="navbar-nav navbar-nav-hover ms-auto">
+                  <li class="nav-item my-auto ms-3 ms-lg-0">
+                    <a
+                      href="/logout"
+                      class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
+                      >LogOut</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
+      </div>
+    </div>
+    <div class="container mt-5 pt-5">
+      <div class="card p-3 mt-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <a class="d-block blur-shadow-image">
+            <img
+              src="<%=post.imageUrl%>"
+              alt="img-blur-shadow"
+              class="img-fluid shadow border-radius-lg"
+            />
+          </a>
+          <div
+            class="colored-shadow"
+            style="
+              background-image: url('https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg');
+            "
+          ></div>
+        </div>
+        <div class="card-body">
+          <!-- <div class="d-flex mt-n6 mx-auto">
+          <a
+            class="btn btn-link text-primary ms-auto border-0"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Refresh"
+          >
+            <i class="material-icons text-lg">refresh</i>
+          </a>
+          <button
+            class="btn btn-link text-info me-auto border-0"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Edit"
+          >
+            <i class="material-icons text-lg">edit</i>
+          </button>
+        </div> -->
+          <h5 class="font-weight-normal mt-3"><%=post.title%></h5>
+          <p class="mb-0"><%=post.description%></p>
+        </div>
+        <hr class="dark horizontal my-0" />
+        <div class="card-footer d-flex">
+          <p class="font-weight-normal my-auto">$899/night</p>
+          <i
+            class="material-icons position-relative ms-auto text-lg me-1 my-auto"
+            >place</i
+          >
+          <p class="text-sm my-auto">Barcelona, Spain</p>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-4">
+      <div class="card">
+        <div class="card-body">
+          <h3>Comments</h3>
+          <form class="text-start" action="/post/<%=post._id%>" method="POST">
+            <div class="input-group input-group-outline">
+              <label for="comment" class="form-label"></label>
+              <textarea
+                placeholder="Comment here"
+                name="comment"
+                id="comment"
+                class="form-control"
+              ></textarea>
+            </div>
+
+            <div class="text-center">
+              <button
+                type="submit"
+                class="btn bg-gradient-primary w-100 my-4 mb-2"
+              >
+                Post
+              </button>
+            </div>
+          </form>
+
+          <%comments.forEach(comment => {%>
+          <div><%=comment.comment%></div>
+          <%})%>
+        </div>
+      </div>
+    </div>
     <%-include('partials/scripts')-%>
   </body>
 </html>
