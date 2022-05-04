@@ -14,8 +14,11 @@ export const getFeed = async (req, res) => {
 
 // Renders profile page
 export const getProfile = async (req, res) => {
+  const posts = await Post.find().sort({ datePosted: -1 });
+  console.log(req.user);
+
   try {
-    res.render('profile.ejs');
+    res.render('profile.ejs', { posts: posts, user: req.user });
   } catch (err) {
     console.log(err);
   }
@@ -52,7 +55,7 @@ export const createPost = async (req, res) => {
 
     await Post.create(post);
 
-    res.redirect(201, '/profile');
+    res.redirect('/profile');
   } catch (error) {
     console.error(error);
   }
