@@ -1,9 +1,7 @@
-module.exports = {
-  ensureAuth: function (req, res, next) {
-    if (req.isAuthenticated()) {
-      return next();
-    } else {
-      res.redirect('/');
-    }
-  },
+export const ensureAuth = function (req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect('/');
+  }
 };
