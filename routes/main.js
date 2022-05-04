@@ -1,18 +1,19 @@
-const express = require('express');
-const router = express.Router();
-const authController = require('../controllers/auth');
-const homeController = require('../controllers/home');
-const postsController = require('../controllers/posts');
-// const { ensureAuth, ensureGuest } = require('../middleware/auth');
+import express from 'express';
 
-//Main Routes - simplified for now
-router.get('/', homeController.getIndex);
+import { getIndex } from '../controllers/home.js';
+import { getFeed, getProfile } from '../controllers/posts.js';
+import { getLogin, getSignup } from '../controllers/auth.js';
+import { ensureAuth } from '../middleware/auth.js';
+
+const router = express.Router();
+
+router.get('/', getIndex);
 
 // TODO add AUTH to pages below
-router.get('/feed', postsController.getFeed);
-router.get('/profile', postsController.getProfile);
+router.get('/feed', getFeed);
+router.get('/profile', getProfile);
 // router.get('/post', postsController.getPost);
-router.get('/login', authController.getLogin);
-router.get('/signup', authController.getSignup);
+router.get('/login', getLogin);
+router.get('/signup', getSignup);
 
-module.exports = router;
+export default router;

@@ -47,7 +47,6 @@ body {
 /* LAYOUT
 /*******************************************/
 
-
 .col-12 {
   margin-top: 180px;
 }
@@ -66,8 +65,8 @@ body {
   margin-left: 280px;
 }
 
-
-h1, h2 {
+h1,
+h2 {
   color: aliceblue;
   font-size: 100px;
   font-family: 'Quantico', 'DM Serif Display', sans-serif;
