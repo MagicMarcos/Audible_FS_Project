@@ -49,7 +49,21 @@ body {
 
 
 .col-12 {
-  margin-top: 100px;
+  margin-top: 180px;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.leftBox, .rigtBox {
+  width: 50%;
+}
+
+.pushButton {
+  margin-left: 280px;
 }
 
 
@@ -60,6 +74,7 @@ h1, h2 {
   text-align: center;
   margin-top: 100px;
 }
+
 
 button {
   font-family: 'Quantico', 'DM Serif Display', sans-serif;
