@@ -2,11 +2,16 @@ import cloudinary from '../middleware/cloudinary.js';
 
 // Models
 import Post from '../models/Post.js';
+import Comment from '../models/Comment.js';
 
 // renders feed
 export const getFeed = async (req, res) => {
+  const posts = await Post.find().sort({ datePosted: -1 });
+
   try {
-    res.render('feed.ejs', {user: req.user });
+
+    res.render('feed.ejs', { posts: posts, user: req.user });
+
   } catch (err) {
     console.log(err);
   }
@@ -27,8 +32,11 @@ export const getProfile = async (req, res) => {
 
 // Renders individual post page
 export const getPost = async (req, res) => {
+  const post = await Post.findById({ _id: req.params.id });
+  const comments = await Comment.find({ postId: req.params.id });
+  console.log(post);
   try {
-    res.render('post.ejs');
+    res.render('post.ejs', { post: post, comments: comments });
   } catch (err) {
     console.log(err);
   }
@@ -36,17 +44,11 @@ export const getPost = async (req, res) => {
 
 export const createPost = async (req, res) => {
   try {
-    console.log(
-      '==============================================================='
-    );
-    console.log(req.body);
     const cloudinaryResult = await cloudinary.uploader.upload(req.file.path);
 
     const post = {
-      // userId: req.user._id,
-      // userName: req.user.name,
-      userId: 321321321321,
-      userName: 'boy',
+      userId: req.user._id,
+      userName: req.user.name,
       cloudinaryId: cloudinaryResult.public_id,
       imageUrl: cloudinaryResult.secure_url,
       title: req.body.title,
