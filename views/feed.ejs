@@ -53,178 +53,8 @@
         </div>
       </div>
     </div>
-    
-    
-    <!-- !=============OLD_======== -->
-    <div class="container mt-5 pt-5">
-      <div class="row pt-5">
-        
 
-        <!-- !FORM -->
-        <div class="col-5">
-          <!-- !User Card -->
-          <div class="card card-profile my-4">
-            <div class="row">
-              <div class="col-lg-4 col-md-6 col-12 mt-n5">
-                <a href="javascript:;">
-                  <div class="p-3 pe-md-0">
-                    <img
-                      class="w-100 border-radius-md shadow-lg"
-                      src="../assets/img/team-5.jpg"
-                      alt="image"
-                    />
-                  </div>
-                </a>
-              </div>
-              <div class="col-lg-8 col-md-6 col-12 my-auto">
-                <div class="card-body ps-lg-0">
-                  <h5 class="mb-0"><%=user.name%></h5>
-                  <h6 class="text-info"><%=user.email%></h6>
-
-                  <div
-                    class="modal fade"
-                    id="modal-form"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-labelledby="modal-form"
-                    aria-hidden="true"
-                  >
-                    <div
-                      class="modal-dialog modal-dialog-centered modal-sm"
-                      role="document"
-                    >
-                      <div class="modal-content">
-                        <div class="modal-body p-0">
-                          <div class="card card-plain">
-                            <div class="card-header pb-0 text-left">
-                              <h3
-                                class="font-weight-bolder text-info text-gradient"
-                              >
-                                Welcome back
-                              </h3>
-                              <p class="mb-0">
-                                Enter your email and password to sign in
-                              </p>
-                            </div>
-                            <div class="card-body">
-                              <form role="form text-left">
-                                <label>Email</label>
-                                <div class="input-group mb-3">
-                                  <input
-                                    type="email"
-                                    class="form-control"
-                                    placeholder="Email"
-                                    aria-label="Email"
-                                    aria-describedby="email-addon"
-                                  />
-                                </div>
-                                <label>Password</label>
-                                <div class="input-group mb-3">
-                                  <input
-                                    type="email"
-                                    class="form-control"
-                                    placeholder="Password"
-                                    aria-label="Password"
-                                    aria-describedby="password-addon"
-                                  />
-                                </div>
-                                <div class="form-check form-switch">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    id="rememberMe"
-                                    checked=""
-                                  />
-                                  <label
-                                    class="form-check-label"
-                                    for="rememberMe"
-                                    >Remember me</label
-                                  >
-                                </div>
-                                <div class="text-center">
-                                  <button
-                                    type="button"
-                                    class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0"
-                                  >
-                                    Sign in
-                                  </button>
-                                </div>
-                              </form>
-                            </div>
-                            <div
-                              class="card-footer text-center pt-0 px-lg-2 px-1"
-                            >
-                              <p class="mb-4 text-sm mx-auto">
-                                Don't have an account?
-                                <a
-                                  href="javascript:;"
-                                  class="text-info text-gradient font-weight-bold"
-                                  >Sign up</a
-                                >
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <!-- <h3>Submit Post</h3>
-          <form
-            action="/post/makepost"
-            enctype="multipart/form-data"
-            method="POST"
-          >
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="postTitle"
-                name="title"
-                placeholder="name@example.com"
-              />
-              <label for="floatingInput">Post Title</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="postCaption"
-                name="caption"
-                placeholder="name@example.com"
-              />
-              <label for="floatingInput">Post Caption</label>
-            </div>
-            <div class="form-floating mb-3">
-              <textarea
-                class="form-control"
-                placeholder="Leave a comment here"
-                id="floatingTextarea"
-                name="description"
-              ></textarea>
-              <label for="floatingTextarea">Post Description</label>
-            </div>
-            <div class="mb-3">
-              <label for="formFile" class="form-label"
-                >Default file input example</label
-              >
-              <input
-                class="form-control"
-                type="file"
-                name="file"
-                id="formFile"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form> -->
-        </div>
-      </div>
-      <!-- !==========POSTLIST=========== -->
+    <!-- !==========POSTLIST=========== -->
     <div class="container mt-5 pt-5">
       <div class="row pt-5">
         <div class="col-7">
@@ -243,10 +73,7 @@
                     alt="..."
                     style="margin-bottom: 10px; "
                   />
-                  <form method="POST" action="/deletePost/<%=post._id%>">
-                    <button 
-                    type="submit"  class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-3 mt-md-0">Delete</button>
-                </form>
+                  
                 </div>
                   
                 <div class="card-body">
@@ -262,7 +89,39 @@
           </div>
           <%}) %>
         </div>
+
+        <!-- !====================================================== -->
+        <div class="col-5">
+          <!-- !User Card -->
+          <div class="card card-profile my-4">
+            <div class="row">
+              <div class="col-lg-4 col-md-6 col-12 mt-n5">
+                <div class="p-3 pe-md-0">
+                  <img
+                    class="w-100 border-radius-md shadow-lg"
+                    src="<%=user.avatar%>"
+                    alt="User Avatar"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-6 col-12 my-auto">
+                <div class="card-body ps-lg-0">
+                  <h5 class="mb-0"><%=user.name%></h5>
+                  <h6 class="text-info"><%=user.email%></h6>
+
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
+    
+    
+
+  
     <%-include('partials/scripts')-%>
   </body>
 </html>
