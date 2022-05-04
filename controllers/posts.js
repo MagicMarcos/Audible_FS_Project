@@ -6,7 +6,7 @@ import Post from '../models/Post.js';
 // renders feed
 export const getFeed = async (req, res) => {
   try {
-    res.render('feed.ejs');
+    res.render('feed.ejs', {user: req.user });
   } catch (err) {
     console.log(err);
   }
@@ -23,6 +23,7 @@ export const getProfile = async (req, res) => {
     console.log(err);
   }
 };
+
 
 // Renders individual post page
 export const getPost = async (req, res) => {

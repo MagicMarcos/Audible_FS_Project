@@ -1,52 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-
-    <title>Final Project</title>
-  </head>
-  <body>
-     <a href="/feed"
-            ><button type="button" class="btn-lg btn-light w-auto me-1 mb-0">
-              FEED
+  <%-include('partials/head')-%>
+  <body 
+  style="
+    background-image: url('https://wallpaperaccess.com/full/264293.jpg');
+    background-size: contain;">
+    <div class="container position-sticky z-index-sticky top-0">
+      <div class="row">
+        <div class="col-12">
+          <nav
+            class="navbar navbar-expand-lg blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4"
+          >
+            <div class="container-fluid px-0">
+              <a href="/post"
+            ><button type="button" class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0">
+              Create a Post
             </button></a
           >
-          <a href="/profile"
-            ><button type="button" class="btn-lg btn-light w-auto me-1 mb-0">
-              PROFILE
+              <button
+                class="navbar-toggler shadow-none ms-2"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navigation"
+                aria-controls="navigation"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon mt-2">
+                  <span class="navbar-toggler-bar bar1"></span>
+                  <span class="navbar-toggler-bar bar2"></span>
+                  <span class="navbar-toggler-bar bar3"></span>
+                </span>
+              </button>
+              <div
+                class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100"
+                id="navigation"
+              >
+                <ul class="navbar-nav navbar-nav-hover ms-auto">
+                  <li class="nav-item my-auto ms-3 ms-lg-0">
+                    <a href="/profile"
+            ><button type="button" class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0">
+              Profile
             </button></a
           >
-          <a href="/post"
-            ><button type="button" class="btn-lg btn-light w-auto me-1 mb-0">
-              POST
-            </button></a
-          >
-          <a href="/signup"
-            ><button type="button" class="btn-lg btn-light w-auto me-1 mb-0">
-              SIGNUP
-            </button></a
-          >
-          <a href="/login"
-            ><button type="button" class="btn-lg btn-light w-auto me-1 mb-0">
-              LOGIN
-            </button></a
-          >
+                    <a
+                      href="/logout"
+                      class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
+                      >LogOut</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <!-- End Navbar -->
         </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-    <script src="./js/main.js"></script>
+      </div>
+    </div>
+    <!-- !=============OLD_======== -->
+    <div class="container mt-5 pt-5">
+      <div class="row pt-5">
+        
+
+        <!-- !FORM -->
+        <div class="col-5">
+          <!-- !User Card -->
+          <div class="card card-profile my-4">
+            <div class="row">
+              <div class="col-lg-4 col-md-6 col-12 mt-n5">
+                <a href="javascript:;">
+                  <div class="p-3 pe-md-0">
+                    <img
+                      class="w-100 border-radius-md shadow-lg"
+                      src="../assets/img/team-5.jpg"
+                      alt="image"
+                    />
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-8 col-md-6 col-12 my-auto">
+                <div class="card-body ps-lg-0">
+                  <h5 class="mb-0"><%=user.name%></h5>
+                  <h6 class="text-info"><%=user.email%></h6>
+
+                  <button
+                    type="button"
+                    class="btn btn-block btn-default mb-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-form"
+                  >
+                    Update User Information
+                  </button>
+                  <div
+                    class="modal fade"
+                    id="modal-form"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="modal-form"
+                    aria-hidden="true"
+                  >
+                    <div
+                      class="modal-dialog modal-dialog-centered modal-sm"
+                      role="document"
+                    >
+                      <div class="modal-content">
+                        <div class="modal-body p-0">
+                          <div class="card card-plain">
+                            <div class="card-header pb-0 text-left">
+                              <h3
+                                class="font-weight-bolder text-info text-gradient"
+                              >
+                                Welcome back
+                              </h3>
+                              <p class="mb-0">
+                                Enter your email and password to sign in
+                              </p>
+                            </div>
+                            <div class="card-body">
+                              <form role="form text-left">
+                                <label>Email</label>
+                                <div class="input-group mb-3">
+                                  <input
+                                    type="email"
+                                    class="form-control"
+                                    placeholder="Email"
+                                    aria-label="Email"
+                                    aria-describedby="email-addon"
+                                  />
+                                </div>
+                                <label>Password</label>
+                                <div class="input-group mb-3">
+                                  <input
+                                    type="email"
+                                    class="form-control"
+                                    placeholder="Password"
+                                    aria-label="Password"
+                                    aria-describedby="password-addon"
+                                  />
+                                </div>
+                                <div class="form-check form-switch">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="rememberMe"
+                                    checked=""
+                                  />
+                                  <label
+                                    class="form-check-label"
+                                    for="rememberMe"
+                                    >Remember me</label
+                                  >
+                                </div>
+                                <div class="text-center">
+                                  <button
+                                    type="button"
+                                    class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0"
+                                  >
+                                    Sign in
+                                  </button>
+                                </div>
+                              </form>
+                            </div>
+                            <div
+                              class="card-footer text-center pt-0 px-lg-2 px-1"
+                            >
+                              <p class="mb-4 text-sm mx-auto">
+                                Don't have an account?
+                                <a
+                                  href="javascript:;"
+                                  class="text-info text-gradient font-weight-bold"
+                                  >Sign up</a
+                                >
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- <h3>Submit Post</h3>
+          <form
+            action="/post/makepost"
+            enctype="multipart/form-data"
+            method="POST"
+          >
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="postTitle"
+                name="title"
+                placeholder="name@example.com"
+              />
+              <label for="floatingInput">Post Title</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="postCaption"
+                name="caption"
+                placeholder="name@example.com"
+              />
+              <label for="floatingInput">Post Caption</label>
+            </div>
+            <div class="form-floating mb-3">
+              <textarea
+                class="form-control"
+                placeholder="Leave a comment here"
+                id="floatingTextarea"
+                name="description"
+              ></textarea>
+              <label for="floatingTextarea">Post Description</label>
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label"
+                >Default file input example</label
+              >
+              <input
+                class="form-control"
+                type="file"
+                name="file"
+                id="formFile"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form> -->
+        </div>
+      </div>
+    </div>
+    <%-include('partials/scripts')-%>
   </body>
 </html>
+
