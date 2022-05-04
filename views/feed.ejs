@@ -12,11 +12,7 @@
             class="navbar navbar-expand-lg blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4"
           >
             <div class="container-fluid px-0">
-              <a href="/post"
-            ><button type="button" class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0">
-              Create a Post
-            </button></a
-          >
+              <img class="w-7 " src="./img/7.png">
               <button
                 class="navbar-toggler shadow-none ms-2"
                 type="button"
@@ -57,6 +53,8 @@
         </div>
       </div>
     </div>
+    
+    
     <!-- !=============OLD_======== -->
     <div class="container mt-5 pt-5">
       <div class="row pt-5">
@@ -83,14 +81,6 @@
                   <h5 class="mb-0"><%=user.name%></h5>
                   <h6 class="text-info"><%=user.email%></h6>
 
-                  <button
-                    type="button"
-                    class="btn btn-block btn-default mb-3"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal-form"
-                  >
-                    Update User Information
-                  </button>
                   <div
                     class="modal fade"
                     id="modal-form"
@@ -234,6 +224,44 @@
           </form> -->
         </div>
       </div>
+      <!-- !==========POSTLIST=========== -->
+    <div class="container mt-5 pt-5">
+      <div class="row pt-5">
+        <div class="col-7">
+          <%posts.forEach(post => { %>
+
+          <div class="card mb-3">
+            <a href="/post/<%= post._id%>">
+              <div class="d-flex flex-row">
+                <div
+                  class="col-3 border-radius-lg m-2"
+                  style="height: 150px; overflow: hidden"
+                >
+                  <img
+                    src="<%= post.imageUrl%>"
+                    class="w-100 shadow-lg"
+                    alt="..."
+                    style="margin-bottom: 10px; "
+                  />
+                  <form method="POST" action="/deletePost/<%=post._id%>">
+                    <button 
+                    type="submit"  class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-3 mt-md-0">Delete</button>
+                </form>
+                </div>
+                  
+                <div class="card-body">
+                  <h5 class="card-title"><%= post.title%></h5>
+                  <p class="card-text"><%= post.description%></p>
+
+                  <p class="mb-0">Posted 10 mins ago by <%= post.userName%></p>
+                  
+                </div>
+                
+              </div>
+            </a>
+          </div>
+          <%}) %>
+        </div>
     </div>
     <%-include('partials/scripts')-%>
   </body>
