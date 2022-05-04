@@ -9,7 +9,9 @@ export const getFeed = async (req, res) => {
   const posts = await Post.find().sort({ datePosted: -1 });
 
   try {
+
     res.render('feed.ejs', { posts: posts, user: req.user });
+
   } catch (err) {
     console.log(err);
   }
@@ -26,6 +28,7 @@ export const getProfile = async (req, res) => {
     console.log(err);
   }
 };
+
 
 // Renders individual post page
 export const getPost = async (req, res) => {
