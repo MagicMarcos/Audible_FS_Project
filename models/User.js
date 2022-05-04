@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
   name: { type: String },
-  // TODO: Add profile image
   avatar: {
     type: String,
     default:

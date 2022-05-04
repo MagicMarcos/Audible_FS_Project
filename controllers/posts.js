@@ -3,6 +3,7 @@ import cloudinary from '../middleware/cloudinary.js';
 // Models
 import Post from '../models/Post.js';
 import Comment from '../models/Comment.js';
+import mongoose from 'mongoose';
 
 // renders feed
 export const getFeed = async (req, res) => {
@@ -17,10 +18,10 @@ export const getFeed = async (req, res) => {
 
 // Renders profile page
 export const getProfile = async (req, res) => {
-  const posts = await Post.find().sort({ datePosted: -1 });
-  console.log(req.user);
-
   try {
+    const posts = await Post.find({ userId: req.user._id }).sort({
+      datePosted: -1,
+    });
     res.render('profile.ejs', { posts: posts, user: req.user });
   } catch (err) {
     console.log(err);
@@ -49,7 +50,6 @@ export const createPost = async (req, res) => {
       cloudinaryId: cloudinaryResult.public_id,
       imageUrl: cloudinaryResult.secure_url,
       title: req.body.title,
-      caption: req.body.caption,
       description: req.body.description,
     };
 
@@ -63,6 +63,30 @@ export const createPost = async (req, res) => {
 
 // TODO: Stretch GOAL -> edit post
 
+export const upVote = async (req, res) => {
+  const id = req.params.id;
+  const route = req.params.route === 'post' ? `post/${id}` : req.params.route;
+
+  try {
+    await Post.findByIdAndUpdate({ _id: id }, { $inc: { likes: 1 } });
+    res.redirect(`/${route}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const downVote = async (req, res) => {
+  const id = req.params.id;
+  const route = req.params.route === 'post' ? `post/${id}` : req.params.route;
+
+  try {
+    await Post.findByIdAndUpdate({ _id: id }, { $inc: { likes: -1 } });
+    res.redirect(`/${route}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const deletePost = async (req, res) => {
   try {
     const postId = await Post.findById({ _id: req.params.id });
@@ -71,7 +95,7 @@ export const deletePost = async (req, res) => {
 
     await Post.remove({ _id: postId });
 
-    res.redirect(200, '/profile');
+    res.redirect('/profile');
   } catch (error) {
     console.error(error);
   }
