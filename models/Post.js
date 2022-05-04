@@ -9,7 +9,7 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
+  imageUrl: {
     type: String,
     require: true,
   },
@@ -19,7 +19,6 @@ const PostSchema = new mongoose.Schema({
   },
   caption: {
     type: String,
-    required: true,
   },
   userName: {
     type: String,

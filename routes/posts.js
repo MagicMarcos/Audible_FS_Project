@@ -9,11 +9,11 @@ const router = express.Router();
 
 //Post Routes
 // TODO: make sure to ensure auth here
-router.get('/', getPost);
+router.get('/:id', ensureAuth, getPost);
 
 router.post('/makepost', upload.single('file'), createPost);
 
-router.post('/:postId', comment);
+router.post('/:id', comment);
 
 router.delete('/deletePost/:id', deletePost);
 
