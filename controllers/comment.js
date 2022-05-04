@@ -1,7 +1,5 @@
-import cloudinary from '../middleware/cloudinary.js';
-
 // Models
-import Post from '../models/Post.js';
+
 import Comment from '../models/Comment.js';
 
 export const comment = async (req, res) => {
