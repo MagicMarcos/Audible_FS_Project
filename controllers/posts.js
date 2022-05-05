@@ -1,4 +1,5 @@
 import cloudinary from '../middleware/cloudinary.js';
+import moment from 'moment';
 
 // Models
 import Post from '../models/Post.js';
@@ -9,7 +10,7 @@ import User from '../models/User.js';
 // renders feed
 export const getFeed = async (req, res) => {
   const posts = await Post.find().sort({ datePosted: -1 });
-
+  req.socketIO.emit('postedTime', posts);
   try {
     res.render('feed.ejs', { posts: posts, user: req.user });
   } catch (err) {
@@ -23,6 +24,7 @@ export const getProfile = async (req, res) => {
     const posts = await Post.find({ userId: req.user._id }).sort({
       datePosted: -1,
     });
+
     res.render('profile.ejs', { posts: posts, user: req.user });
   } catch (err) {
     console.log(err);
@@ -33,10 +35,13 @@ export const getProfile = async (req, res) => {
 export const getPost = async (req, res) => {
   const post = await Post.findById({ _id: req.params.id });
   const comments = await Comment.find({ postId: req.params.id });
-  const likes = post.upVotes.length - post.downVotes.length;
-  console.log(likes);
+  const datePosted = moment(post.datePosted).fromNow();
   try {
-    res.render('post.ejs', { post: post, comments: comments });
+    res.render('post.ejs', {
+      post: post,
+      comments: comments,
+      datePosted: datePosted,
+    });
   } catch (err) {
     console.log(err);
   }

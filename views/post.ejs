@@ -2,7 +2,9 @@
 <html lang="en">
   <%-include('partials/head')-%>
 
-  <body>
+  <body
+    style="background-image: url('../img/back.jpg'); background-size: contain"
+  >
     <div class="container position-sticky z-index-sticky top-0">
       <div class="row">
         <div class="col-12">
@@ -10,16 +12,7 @@
             class="navbar navbar-expand-lg blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4"
           >
             <div class="container-fluid px-0">
-              <a
-                class="navbar-brand font-weight-bolder ms-sm-3"
-                href="https://demos.creative-tim.com/material-kit/index"
-                rel="tooltip"
-                title="Designed and Coded by Creative Tim"
-                data-placement="bottom"
-                target="_blank"
-              >
-                Material Kit 2
-              </a>
+              <img class="w-7" src="../img/7.png" />
               <button
                 class="navbar-toggler shadow-none ms-2"
                 type="button"
@@ -41,6 +34,22 @@
               >
                 <ul class="navbar-nav navbar-nav-hover ms-auto">
                   <li class="nav-item my-auto ms-3 ms-lg-0">
+                    <a href="/feed"
+                      ><button
+                        type="button"
+                        class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
+                      >
+                        Feed
+                      </button></a
+                    >
+                    <a href="/profile"
+                      ><button
+                        type="button"
+                        class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
+                      >
+                        Profile
+                      </button></a
+                    >
                     <a
                       href="/logout"
                       class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
@@ -51,13 +60,13 @@
               </div>
             </div>
           </nav>
-          <!-- End Navbar -->
         </div>
       </div>
     </div>
+    <!-- NAVBAR END -->
     <div class="container mt-5 pt-5">
-      <div class="card p-3 mt-4">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+      <div class="card p-3 mt-5">
+        <div class="card-header p-0 position-relative mt-n3 mx-3 z-index-2">
           <a class="d-block blur-shadow-image">
             <img
               src="<%=post.imageUrl%>"
@@ -73,24 +82,6 @@
           ></div>
         </div>
         <div class="card-body">
-          <!-- <div class="d-flex mt-n6 mx-auto">
-          <a
-            class="btn btn-link text-primary ms-auto border-0"
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            title="Refresh"
-          >
-            <i class="material-icons text-lg">refresh</i>
-          </a>
-          <button
-            class="btn btn-link text-info me-auto border-0"
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            title="Edit"
-          >
-            <i class="material-icons text-lg">edit</i>
-          </button>
-        </div> -->
           <h5 class="font-weight-normal mt-3"><%=post.title%></h5>
           <p class="mb-0"><%=post.description%></p>
         </div>
@@ -100,20 +91,32 @@
             method="POST"
             action="/post/upVote/<%=post._id%>/post?_method=PUT"
           >
-            <button type="submit">Like</button>
+            <button
+              type="submit"
+              class="bg-transparent btn btn-pill btn-icon-only"
+            >
+              <span style="color: #e4316f" ; class="fas fa-thumbs-up"></span>
+            </button>
           </form>
           <form
             method="POST"
             action="/post/downVote/<%=post._id%>/post?_method=PUT"
           >
-            <button type="submit">Dislike</button>
+            <button
+              type="submit"
+              class="bg-transparent btn btn-pill btn-icon-only"
+            >
+              <span style="color: #e4316f" ; class="fas fa-thumbs-down"></span>
+            </button>
           </form>
 
-          <p class="font-weight-normal my-auto"><%=post.likes%></p>
+          <p class="font-weight-normal mt-2"><%=post.likes%></p>
           <i
             class="material-icons position-relative ms-auto text-lg me-1 my-auto"
           ></i>
-          <p class="text-sm my-auto">by <%=post.userName%></p>
+          <p class="text-sm mt-2">
+            Created by <%=post.userName%> <%=datePosted%>
+          </p>
         </div>
       </div>
     </div>
@@ -123,7 +126,7 @@
           <h3>Comments</h3>
           <form
             class="text-start"
-            action="/post/comment/<%=post._id%>"
+            action="../post/comment/<%=post._id%>"
             method="POST"
           >
             <div class="input-group input-group-outline">

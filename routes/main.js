@@ -19,7 +19,7 @@ const router = express.Router();
 router.get('/', getIndex);
 
 // TODO add AUTH to pages below
-router.get('/feed', ensureAuth, getFeed);
+router.get('/feed', ensureAuth, useSocket, getFeed);
 router.get('/profile', ensureAuth, useSocket, getProfile);
 
 router.get('/login', getLogin);
