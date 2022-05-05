@@ -3,10 +3,8 @@
   <%-include('partials/head')-%>
 
   <body
-  style="
-    background-image: url('./img/back.jpg');
-    background-size: contain;">
-
+    style="background-image: url('./img/back.jpg'); background-size: contain"
+  >
     <div class="container position-sticky z-index-sticky top-0">
       <div class="row">
         <div class="col-12">
@@ -73,7 +71,7 @@
                     class="w-100 shadow-lg"
                     alt="..."
                   />
-                  
+
                 </div>
 
                 <div class="card-body">
@@ -111,7 +109,7 @@
             <span style="color: #E4316F"; class="fas fa-thumbs-down"></span> 
           </button>         
             </form>
-            <p><%=post.likes%></p>
+            <p id="<%=post._id%>"><%=post.likes%></p>
           </div>
           </div>
           <%}) %>

@@ -11,6 +11,7 @@ import {
   updateUser,
   logout,
 } from '../controllers/auth.js';
+import { useSocket } from '../middleware/socket-io.js';
 import { ensureAuth } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -19,7 +20,7 @@ router.get('/', getIndex);
 
 // TODO add AUTH to pages below
 router.get('/feed', ensureAuth, getFeed);
-router.get('/profile', ensureAuth, getProfile);
+router.get('/profile', ensureAuth, useSocket, getProfile);
 
 router.get('/login', getLogin);
 router.post('/login', postLogin);
