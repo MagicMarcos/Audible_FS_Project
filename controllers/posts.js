@@ -79,6 +79,11 @@ export const upVote = async (req, res) => {
 
     await post.save();
 
+    const postLikeUpdate = {
+      likes: post.likes,
+      id: post._id,
+    };
+    req.socketIO.emit('update', postLikeUpdate);
     res.redirect(`/${route}`);
   } catch (error) {
     console.error(error);
@@ -98,6 +103,11 @@ export const downVote = async (req, res) => {
     post.likes = post.upVotes.length - post.downVotes.length;
 
     await post.save();
+    const postLikeUpdate = {
+      likes: post.likes,
+      id: post._id,
+    };
+    req.socketIO.emit('update', postLikeUpdate);
     res.redirect(`/${route}`);
   } catch (error) {
     console.error(error);

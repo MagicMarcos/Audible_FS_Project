@@ -9,6 +9,7 @@ import {
   downVote,
 } from '../controllers/posts.js';
 import { comment } from '../controllers/comment.js';
+import { useSocket } from '../middleware/socket-io.js';
 import { ensureAuth } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -21,7 +22,7 @@ router.post('/makepost', upload.single('file'), createPost);
 
 router.post('/comment/:id', comment);
 
-router.put('/upVote/:id/:route', upVote);
+router.put('/upVote/:id/:route', useSocket, upVote);
 
 router.put('/downVote/:id/:route', downVote);
 
