@@ -1,84 +1,8 @@
 /******************************************
-/* SETUP
-/*******************************************/
-
-/* Box Model Hack */
-* {
-  box-sizing: border-box;
-}
-
-/* Clear fix hack */
-.clearfix:after {
-  content: '.';
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-}
-
-.clear {
-  clear: both;
-}
-
-.alignright {
-  float: right;
-  padding: 0 0 10px 10px; /* note the padding around a right floated image */
-}
-
-.alignleft {
-  float: left;
-  padding: 0 10px 10px 0; /* note the padding around a left floated image */
-}
-
-/******************************************
-/* BASE STYLES
-/*******************************************/
-
-body {
-  font-size: 12px;
-  line-height: 1.4;
-  font-family: Helvetica, Arial, sans-serif;
-  background-color: darkgray;
-  /* background-image: url(https://cdn.pixabay.com/photo/2018/04/11/17/11/background-3311042_1280.jpg); */
-}
-
-/******************************************
-/* LAYOUT
-/*******************************************/
-
-.col-12 {
-  margin-top: 180px;
-}
-
-
-.container {
-  display: flex;
-  flex-direction: row;
-}
-
-.leftBox, .rigtBox {
-  width: 50%;
-}
-
-.pushButton {
-  margin-left: 280px;
-}
-
-h1,
-h2 {
-  color: aliceblue;
-  font-size: 100px;
-  font-family: 'Quantico', 'DM Serif Display', sans-serif;
-  text-align: center;
-  margin-top: 100px;
-}
-
-
-button {
-  font-family: 'Quantico', 'DM Serif Display', sans-serif;
-}
-
-/******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+@media (max-width: 992px) {
+  .userCard {
+    display: none !important;
+  }
+}

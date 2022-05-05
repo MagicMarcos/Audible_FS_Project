@@ -56,92 +56,8 @@
     <!-- !==========POSTLIST=========== -->
     <div class="container mt-5 pt-5">
       <div class="row pt-5">
-        <div class="col-7">
-          <%posts.forEach(post => { %>
-
-          <div class="card mb-3">
-            <a style="margin-bottom: -15px" href="/post/<%= post._id%>">
-              <div class="d-flex flex-row">
-                <div
-                  class="col-3 border-radius-lg m-2"
-                  style="height: 120px; overflow: hidden"
-                >
-                  <img
-                    src="<%= post.imageUrl%>"
-                    class="w-100 shadow-lg"
-                    alt="..."
-                  />
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title"><%= post.title%></h5>
-                  <p class="card-text"><%= post.description%></p>
-
-                  <p class="mb-0">
-                    Created by <%= post.userName%>
-                    <span
-                      id="<%=post._id%>"
-                      data-time="<%=post.datePosted%>"
-                      class="timePosted"
-                    ></span>
-                  </p>
-                </div>
-              </div>
-            </a>
-
-            <div style="display: flex; flex-direction: row">
-              <form
-                method="POST"
-                action="../post/deletePost/<%=post._id%>?_method=DELETE"
-              >
-                <button
-                  style="margin-left: 12px"
-                  type="submit"
-                  class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-3 mt-md-0"
-                >
-                  Delete
-                </button>
-              </form>
-
-              <form
-                method="POST"
-                action="/post/upVote/<%=post._id%>/profile?_method=PUT"
-                style="display: flex; flex-direction: row"
-              >
-                <button
-                  type="submit"
-                  class="bg-transparent btn btn-pill btn-icon-only"
-                >
-                  <span
-                    style="color: #e4316f"
-                    ;
-                    class="fas fa-thumbs-up"
-                  ></span>
-                </button>
-              </form>
-              <form
-                action="/post/downVote/<%=post._id%>/profile?_method=PUT"
-                method="POST"
-              >
-                <button
-                  type="submit"
-                  class="bg-transparent btn btn-pill btn-icon-only"
-                >
-                  <span
-                    style="color: #e4316f"
-                    ;
-                    class="fas fa-thumbs-down"
-                  ></span>
-                </button>
-              </form>
-              <p id="<%=post._id%>"><%=post.likes%></p>
-            </div>
-          </div>
-          <%}) %>
-        </div>
-
         <!-- !====================================================== -->
-        <div class="col-5">
+        <div class="col-12 col-lg-5 mb-4">
           <!-- !User Card -->
           <div class="card card-profile mb-4">
             <div class="row">
@@ -192,23 +108,6 @@
                                 >
                                   Sign up
                                 </h4>
-                                <!-- <div class="row mt-3">
-                    <div class="col-2 text-center ms-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-facebook text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center px-1">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-github text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center me-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-google text-white text-lg"></i>
-                      </a>
-                    </div>
-                  </div> -->
                               </div>
                             </div>
                             <div class="card-body">
@@ -239,29 +138,6 @@
                                     class="form-control"
                                   />
                                 </div>
-                                <!-- <div
-                                  class="input-group input-group-outline mb-3"
-                                >
-                                  <label class="form-label">Password</label>
-                                  <input
-                                    type="password"
-                                    name="password"
-                                    class="form-control"
-                                  />
-                                </div>
-
-                                <div
-                                  class="input-group input-group-outline mb-3"
-                                >
-                                  <label class="form-label"
-                                    >Confirm Password</label
-                                  >
-                                  <input
-                                    type="password"
-                                    name="confirmPassword"
-                                    class="form-control"
-                                  />
-                                </div> -->
 
                                 <div
                                   class="input-group input-group-outline mb-3"
@@ -351,55 +227,90 @@
               </form>
             </div>
           </div>
+        </div>
 
-          <!-- <h3>Submit Post</h3>
-          <form
-            action="/post/makepost"
-            enctype="multipart/form-data"
-            method="POST"
-          >
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="postTitle"
-                name="title"
-                placeholder="name@example.com"
-              />
-              <label for="floatingInput">Post Title</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="postCaption"
-                name="caption"
-                placeholder="name@example.com"
-              />
-              <label for="floatingInput">Post Caption</label>
-            </div>
-            <div class="form-floating mb-3">
-              <textarea
-                class="form-control"
-                placeholder="Leave a comment here"
-                id="floatingTextarea"
-                name="description"
-              ></textarea>
-              <label for="floatingTextarea">Post Description</label>
-            </div>
-            <div class="mb-3">
-              <label for="formFile" class="form-label"
-                >Default file input example</label
+        <div class="col-12 col-lg-7">
+          <%posts.forEach(post => { %>
+
+          <div class="card mb-3">
+            <a style="margin-bottom: -15px" href="/post/<%= post._id%>">
+              <div class="d-flex flex-row">
+                <div
+                  class="col-3 border-radius-lg m-2"
+                  style="height: 120px; overflow: hidden"
+                >
+                  <img
+                    src="<%= post.imageUrl%>"
+                    class="w-100 shadow-lg"
+                    alt="..."
+                  />
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title"><%= post.title%></h5>
+                  <p class="card-text"><%= post.description%></p>
+
+                  <p class="mb-0">
+                    Created by <%= post.userName%>
+                    <span
+                      id="<%=post._id%>"
+                      data-time="<%=post.datePosted%>"
+                      class="timePosted"
+                    ></span>
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <div style="display: flex; flex-direction: row">
+              <form
+                method="POST"
+                action="../post/deletePost/<%=post._id%>?_method=DELETE"
               >
-              <input
-                class="form-control"
-                type="file"
-                name="file"
-                id="formFile"
-              />
+                <button
+                  style="margin-left: 12px"
+                  type="submit"
+                  class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-3 mt-md-0"
+                >
+                  Delete
+                </button>
+              </form>
+
+              <form
+                method="POST"
+                action="/post/upVote/<%=post._id%>/profile?_method=PUT"
+                style="display: flex; flex-direction: row"
+              >
+                <button
+                  type="submit"
+                  class="bg-transparent btn btn-pill btn-icon-only"
+                >
+                  <span
+                    style="color: #e4316f"
+                    ;
+                    class="fas fa-thumbs-up"
+                  ></span>
+                </button>
+              </form>
+              <form
+                action="/post/downVote/<%=post._id%>/profile?_method=PUT"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="bg-transparent btn btn-pill btn-icon-only"
+                >
+                  <span
+                    style="color: #e4316f"
+                    ;
+                    class="fas fa-thumbs-down"
+                  ></span>
+                </button>
+              </form>
+              <p id="<%=post._id%>"><%=post.likes%></p>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form> -->
+          </div>
+          <%}) %>
         </div>
       </div>
     </div>

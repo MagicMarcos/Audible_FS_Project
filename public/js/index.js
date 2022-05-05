@@ -54,13 +54,18 @@ function outputMessage(message) {
   const div = document.createElement('div');
   div.classList.add('message');
   const p = document.createElement('p');
-  p.classList.add('meta');
+  p.classList.add('mb-0');
+  p.classList.add('h6');
+
   p.innerText = message.username;
-  p.innerHTML += `<span>${message.time}</span>`;
+
   div.appendChild(p);
+
   const para = document.createElement('p');
-  para.classList.add('text');
-  para.innerText = message.text;
+  para.classList.add('border-bottom');
+  para.classList.add('pb-1');
+
+  para.innerText = ` - ${message.text}`;
   div.appendChild(para);
   document.querySelector('.chat-messages').appendChild(div);
 }
@@ -84,7 +89,7 @@ function outputUsers(users) {
 document.getElementById('leave-btn').addEventListener('click', () => {
   const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
   if (leaveRoom) {
-    window.location = '../index.html';
+    window.location = '../feed';
   } else {
   }
 });
