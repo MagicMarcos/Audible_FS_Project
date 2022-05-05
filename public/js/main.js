@@ -11,7 +11,7 @@ socket.on('update', updates => {
   console.log(updates);
 
   if (document.getElementById(`likes_${updates.id}`) !== null) {
-    document.getElementById(updates.id).innerText = updates.likes;
+    document.getElementById(`likes_${updates.id}`).innerText = updates.likes;
   }
 });
 
