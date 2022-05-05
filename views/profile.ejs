@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <%-include('partials/head')-%>
+
   <body
   style="
     background-image: url('./img/back.jpg');
     background-size: contain;">
+
     <div class="container position-sticky z-index-sticky top-0">
       <div class="row">
         <div class="col-12">
@@ -12,7 +14,7 @@
             class="navbar navbar-expand-lg blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4"
           >
             <div class="container-fluid px-0">
-              <img class="w-7 " src="./img/7.png">
+              <img class="w-7" src="./img/7.png" />
               <button
                 class="navbar-toggler shadow-none ms-2"
                 type="button"
@@ -70,8 +72,9 @@
                     src="<%= post.imageUrl%>"
                     class="w-100 shadow-lg"
                     alt="..."
-                    style="margin-bottom: 10px; "
+                    style="margin-bottom: 10px"
                   />
+
                   <form method="POST" action="../post/deletePost/<%=post._id%>?_method=DELETE">
                     <button 
                     type="submit"  class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-3 mt-md-0">Delete</button>
@@ -82,17 +85,28 @@
                 </form>
                   
                 </div>
-                  
+
                 <div class="card-body">
                   <h5 class="card-title"><%= post.title%></h5>
                   <p class="card-text"><%= post.description%></p>
 
                   <p class="mb-0">Posted 10 mins ago by <%= post.userName%></p>
-                  
                 </div>
-                
               </div>
             </a>
+            <form
+              method="POST"
+              action="/post/upVote/<%=post._id%>/profile?_method=PUT"
+            >
+              <button type="submit">Like</button>
+            </form>
+            <form
+              action="/post/downVote/<%=post._id%>/profile?_method=PUT"
+              method="POST"
+            >
+              <button type="submit">Dislike</button>
+            </form>
+            <p><%=post.likes%></p>
           </div>
           <%}) %>
         </div>
@@ -137,73 +151,109 @@
                     >
                       <div class="modal-content">
                         <div class="modal-body p-0">
-                          <div class="card card-plain">
-                            <div class="card-header pb-0 text-left">
-                              <h3
-                                class="font-weight-bolder text-info text-gradient"
+                          <div class="card z-index-0 fadeIn3 fadeInBottom">
+                            <div
+                              class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
+                            >
+                              <div
+                                class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1"
                               >
-                                Welcome back
-                              </h3>
-                              <p class="mb-0">
-                                Enter your email and password to sign in
-                              </p>
+                                <h4
+                                  class="text-white font-weight-bolder text-center mt-2 mb-0"
+                                >
+                                  Sign up
+                                </h4>
+                                <!-- <div class="row mt-3">
+                    <div class="col-2 text-center ms-auto">
+                      <a class="btn btn-link px-3" href="javascript:;">
+                        <i class="fa fa-facebook text-white text-lg"></i>
+                      </a>
+                    </div>
+                    <div class="col-2 text-center px-1">
+                      <a class="btn btn-link px-3" href="javascript:;">
+                        <i class="fa fa-github text-white text-lg"></i>
+                      </a>
+                    </div>
+                    <div class="col-2 text-center me-auto">
+                      <a class="btn btn-link px-3" href="javascript:;">
+                        <i class="fa fa-google text-white text-lg"></i>
+                      </a>
+                    </div>
+                  </div> -->
+                              </div>
                             </div>
                             <div class="card-body">
-                              <form role="form text-left">
-                                <label>Email</label>
-                                <div class="input-group mb-3">
+                              <form
+                                action="../updateUser/<%=user._id%>?_method=PUT"
+                                method="POST"
+                                role="form"
+                                enctype="multipart/form-data"
+                                class="text-start"
+                              >
+                                <div
+                                  class="input-group input-group-outline my-3"
+                                >
+                                  <label class="form-label">New Name</label>
                                   <input
-                                    type="email"
+                                    type="text"
+                                    name="name"
                                     class="form-control"
-                                    placeholder="Email"
-                                    aria-label="Email"
-                                    aria-describedby="email-addon"
                                   />
                                 </div>
-                                <label>Password</label>
-                                <div class="input-group mb-3">
+                                <div
+                                  class="input-group input-group-outline my-3"
+                                >
+                                  <label class="form-label">New Email</label>
                                   <input
                                     type="email"
+                                    name="email"
                                     class="form-control"
-                                    placeholder="Password"
-                                    aria-label="Password"
-                                    aria-describedby="password-addon"
                                   />
                                 </div>
-                                <div class="form-check form-switch">
+                                <!-- <div
+                                  class="input-group input-group-outline mb-3"
+                                >
+                                  <label class="form-label">Password</label>
                                   <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    id="rememberMe"
-                                    checked=""
+                                    type="password"
+                                    name="password"
+                                    class="form-control"
                                   />
-                                  <label
-                                    class="form-check-label"
-                                    for="rememberMe"
-                                    >Remember me</label
+                                </div>
+
+                                <div
+                                  class="input-group input-group-outline mb-3"
+                                >
+                                  <label class="form-label"
+                                    >Confirm Password</label
                                   >
+                                  <input
+                                    type="password"
+                                    name="confirmPassword"
+                                    class="form-control"
+                                  />
+                                </div> -->
+
+                                <div
+                                  class="input-group input-group-outline mb-3"
+                                >
+                                  <input
+                                    class="form-control"
+                                    type="file"
+                                    name="file"
+                                    id="formFile"
+                                  />
                                 </div>
+
                                 <div class="text-center">
                                   <button
-                                    type="button"
-                                    class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0"
+                                    type="submit"
+                                    class="btn bg-gradient-primary w-100 my-4 mb-2"
                                   >
-                                    Sign in
+                                    Submit
                                   </button>
                                 </div>
                               </form>
-                            </div>
-                            <div
-                              class="card-footer text-center pt-0 px-lg-2 px-1"
-                            >
-                              <p class="mb-4 text-sm mx-auto">
-                                Don't have an account?
-                                <a
-                                  href="javascript:;"
-                                  class="text-info text-gradient font-weight-bold"
-                                  >Sign up</a
-                                >
-                              </p>
                             </div>
                           </div>
                         </div>

@@ -96,12 +96,24 @@
         </div>
         <hr class="dark horizontal my-0" />
         <div class="card-footer d-flex">
-          <p class="font-weight-normal my-auto">$899/night</p>
+          <form
+            method="POST"
+            action="/post/upVote/<%=post._id%>/post?_method=PUT"
+          >
+            <button type="submit">Like</button>
+          </form>
+          <form
+            method="POST"
+            action="/post/downVote/<%=post._id%>/post?_method=PUT"
+          >
+            <button type="submit">Dislike</button>
+          </form>
+
+          <p class="font-weight-normal my-auto"><%=post.likes%></p>
           <i
             class="material-icons position-relative ms-auto text-lg me-1 my-auto"
-            >place</i
-          >
-          <p class="text-sm my-auto">Barcelona, Spain</p>
+          ></i>
+          <p class="text-sm my-auto">by <%=post.userName%></p>
         </div>
       </div>
     </div>
@@ -109,7 +121,11 @@
       <div class="card">
         <div class="card-body">
           <h3>Comments</h3>
-          <form class="text-start" action="/post/<%=post._id%>" method="POST">
+          <form
+            class="text-start"
+            action="/post/comment/<%=post._id%>"
+            method="POST"
+          >
             <div class="input-group input-group-outline">
               <label for="comment" class="form-label"></label>
               <textarea
@@ -131,6 +147,7 @@
           </form>
 
           <%comments.forEach(comment => {%>
+          <div><%=comment.userName%></div>
           <div><%=comment.comment%></div>
           <%})%>
         </div>
