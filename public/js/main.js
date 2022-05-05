@@ -10,7 +10,7 @@ postTimes.forEach(el => (el.innerText = moment(el.dataset.time).fromNow()));
 socket.on('update', updates => {
   console.log(updates);
 
-  if (document.getElementById(updates.id) !== null) {
+  if (document.getElementById(`likes_${updates.id}`) !== null) {
     document.getElementById(updates.id).innerText = updates.likes;
   }
 });
