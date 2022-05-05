@@ -1,5 +1,7 @@
 import passport from 'passport';
 import validator from 'validator';
+import cloudinary from '../middleware/cloudinary.js';
+
 import User from '../models/User.js';
 
 export const getLogin = (req, res) => {
@@ -115,4 +117,54 @@ export const postSignUp = (req, res, next) => {
       });
     }
   );
+};
+
+export const updateUser = async (req, res) => {
+  try {
+    if (req.body.email.trim() === '') {
+      req.body.email = req.user.email;
+    }
+    const validationErrors = [];
+    if (!validator.isEmail(req.body.email))
+      validationErrors.push({ msg: 'Please enter a valid email address.' });
+    // if (!validator.isLength(req.body.password, { min: 8 }))
+    //   validationErrors.push({
+    //     msg: 'Password must be at least 8 characters long',
+    //   });
+    // if (req.body.password !== req.body.confirmPassword)
+    //   validationErrors.push({ msg: 'Passwords do not match' });
+
+    if (validationErrors.length) {
+      // req.flash('errors', validationErrors);
+      console.log(validationErrors);
+      return res.redirect('../profile');
+    }
+    req.body.email = validator.normalizeEmail(req.body.email, {
+      gmail_remove_dots: false,
+    });
+
+    let cloudinaryResult;
+
+    const user = await User.findById({ _id: req.params.id });
+
+    const emailCheck = await User.findOne({ email: req.body.email });
+
+    if (req.body.name.trim() !== '') {
+      user.name = req.body.name.trim();
+    }
+    if (emailCheck === null) {
+      user.email = req.body.email;
+    }
+
+    if (req.file !== undefined) {
+      cloudinaryResult = await cloudinary.uploader.upload(req.file.path);
+      user.avatar = cloudinaryResult.secure_url;
+    }
+
+    await user.save();
+
+    res.redirect('/profile');
+  } catch (error) {
+    console.error(error);
+  }
 };

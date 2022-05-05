@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <%-include('partials/head')-%>
-  <body
-    style="
-      background-image: url('https://wallpaperaccess.com/full/264293.jpg');
-      background-size: contain;
-    "
-  >
+  <body>
     <div class="container position-sticky z-index-sticky top-0">
       <div class="row">
         <div class="col-12">
@@ -185,7 +180,7 @@
                             </div>
                             <div class="card-body">
                               <form
-                                action="/signup"
+                                action="../updateUser/<%=user._id%>?_method=PUT"
                                 method="POST"
                                 role="form"
                                 enctype="multipart/form-data"
@@ -211,6 +206,30 @@
                                     class="form-control"
                                   />
                                 </div>
+                                <!-- <div
+                                  class="input-group input-group-outline mb-3"
+                                >
+                                  <label class="form-label">Password</label>
+                                  <input
+                                    type="password"
+                                    name="password"
+                                    class="form-control"
+                                  />
+                                </div>
+
+                                <div
+                                  class="input-group input-group-outline mb-3"
+                                >
+                                  <label class="form-label"
+                                    >Confirm Password</label
+                                  >
+                                  <input
+                                    type="password"
+                                    name="confirmPassword"
+                                    class="form-control"
+                                  />
+                                </div> -->
+
                                 <div
                                   class="input-group input-group-outline mb-3"
                                 >

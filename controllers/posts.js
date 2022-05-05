@@ -4,6 +4,7 @@ import cloudinary from '../middleware/cloudinary.js';
 import Post from '../models/Post.js';
 import Comment from '../models/Comment.js';
 import mongoose from 'mongoose';
+import User from '../models/User.js';
 
 // renders feed
 export const getFeed = async (req, res) => {
