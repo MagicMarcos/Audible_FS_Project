@@ -8,11 +8,11 @@ export const comment = async (req, res) => {
     comment: req.body.comment,
     postId: req.params.id,
   };
-  console.log('commented');
+
   try {
     await Comment.create(result);
-
-    res.redirect(`../post/${result.postId}`);
+    console.log(result.userName);
+    res.redirect(`../${result.postId}`);
   } catch (error) {
     console.error(error);
   }

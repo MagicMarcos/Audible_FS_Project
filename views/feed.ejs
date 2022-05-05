@@ -80,12 +80,11 @@
                   <h5 class="card-title"><%= post.title%></h5>
                   <p class="card-text"><%= post.description%></p>
 
-                  <p class="mb-0">Posted 10 mins ago by <%= post.userName%></p>
+                  <p class="mb-0">Created by <%= post.userName%> <span id="<%=post._id%>" data-time="<%=post.datePosted%>" class="timePosted"></span></p>
                 </div>
               </div>
             </a>
             <div style="display: flex; flex-direction: row">
-
               <form
                 method="POST"
                 action="/post/upVote/<%=post._id%>/feed?_method=PUT"
@@ -119,18 +118,17 @@
                   ></span>
                 </button>
               </form>
-              <p id="<%=post._id%>"><%=post.likes%></p>
+              <p class="mt-2" id="<%=post._id%>"><%=post.likes%></pcl>
             </div>
           </div>
           <%}) %>
         </div>
 
-        <!-- !====================================================== -->
+        <!-- !User Card -->
         <div class="col-5">
-          <!-- !User Card -->
           <div class="card card-profile my-4">
             <div class="row">
-              <div class="col-lg-4 col-md-6 col-12 mt-n5">
+              <div class="col-lg-4 col-md-6 col-12 ">
                 <div class="p-3 pe-md-0">
                   <img
                     class="w-100 border-radius-md shadow-lg"
