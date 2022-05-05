@@ -3,7 +3,7 @@ import passport from 'passport';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import methodOverride from 'method-override';
-import logger from 'morgan';
+// import logger from 'morgan';
 import connectDB from './config/database.js';
 import dotenv from 'dotenv';
 import passportConfig from './config/passport.js';
