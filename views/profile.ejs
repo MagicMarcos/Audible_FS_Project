@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <%-include('partials/head')-%>
-  <body>
+  <body
+  style="
+    background-image: url('https://wallpaperaccess.com/full/264293.jpg');
+    background-size: contain;">
     <div class="container position-sticky z-index-sticky top-0">
       <div class="row">
         <div class="col-12">
@@ -9,16 +12,7 @@
             class="navbar navbar-expand-lg blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4"
           >
             <div class="container-fluid px-0">
-              <a
-                class="navbar-brand font-weight-bolder ms-sm-3"
-                href="https://demos.creative-tim.com/material-kit/index"
-                rel="tooltip"
-                title="Designed and Coded by Creative Tim"
-                data-placement="bottom"
-                target="_blank"
-              >
-                Material Kit 2
-              </a>
+              <img class="w-7 " src="./img/7.png">
               <button
                 class="navbar-toggler shadow-none ms-2"
                 type="button"
@@ -40,6 +34,11 @@
               >
                 <ul class="navbar-nav navbar-nav-hover ms-auto">
                   <li class="nav-item my-auto ms-3 ms-lg-0">
+                    <a
+                      href="/feed"
+                      class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
+                      >Feed</a
+                    >
                     <a
                       href="/logout"
                       class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
@@ -65,21 +64,28 @@
               <div class="d-flex flex-row">
                 <div
                   class="col-3 border-radius-lg m-2"
-                  style="height: 130px; overflow: hidden"
+                  style="height: 150px; overflow: hidden"
                 >
                   <img
                     src="<%= post.imageUrl%>"
                     class="w-100 shadow-lg"
                     alt="..."
+                    style="margin-bottom: 10px; "
                   />
+                  <form method="POST" action="../post/deletePost/<%=post._id%>?_method=DELETE">
+                    <button 
+                    type="submit"  class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-3 mt-md-0">Delete</button>
+                </form>
                 </div>
-
+                  
                 <div class="card-body">
                   <h5 class="card-title"><%= post.title%></h5>
                   <p class="card-text"><%= post.description%></p>
 
                   <p class="mb-0">Posted 10 mins ago by <%= post.userName%></p>
+                  
                 </div>
+                
               </div>
             </a>
             <form
