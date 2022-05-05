@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <%-include('partials/head')-%>
-  <body 
-  style="
-    background-image: url('https://wallpaperaccess.com/full/264293.jpg');
-    background-size: contain;">
+  <body
+    style="
+      background-image: url('https://wallpaperaccess.com/full/264293.jpg');
+      background-size: contain;
+    "
+  >
     <div class="container position-sticky z-index-sticky top-0">
       <div class="row">
         <div class="col-12">
@@ -12,7 +14,7 @@
             class="navbar navbar-expand-lg blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4"
           >
             <div class="container-fluid px-0">
-              <img class="w-7 " src="./img/7.png">
+              <img class="w-7" src="./img/7.png" />
               <button
                 class="navbar-toggler shadow-none ms-2"
                 type="button"
@@ -35,10 +37,13 @@
                 <ul class="navbar-nav navbar-nav-hover ms-auto">
                   <li class="nav-item my-auto ms-3 ms-lg-0">
                     <a href="/profile"
-            ><button type="button" class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0">
-              Profile
-            </button></a
-          >
+                      ><button
+                        type="button"
+                        class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
+                      >
+                        Profile
+                      </button></a
+                    >
                     <a
                       href="/logout"
                       class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
@@ -71,19 +76,16 @@
                     src="<%= post.imageUrl%>"
                     class="w-100 shadow-lg"
                     alt="..."
-                    style="margin-bottom: 10px; "
+                    style="margin-bottom: 10px"
                   />
-                  
                 </div>
-                  
+
                 <div class="card-body">
                   <h5 class="card-title"><%= post.title%></h5>
                   <p class="card-text"><%= post.description%></p>
 
                   <p class="mb-0">Posted 10 mins ago by <%= post.userName%></p>
-                  
                 </div>
-                
               </div>
             </a>
           </div>
@@ -108,21 +110,14 @@
                 <div class="card-body ps-lg-0">
                   <h5 class="mb-0"><%=user.name%></h5>
                   <h6 class="text-info"><%=user.email%></h6>
-
-                  
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
-    
-    
 
-  
     <%-include('partials/scripts')-%>
   </body>
 </html>
-

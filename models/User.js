@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
       'https://res.cloudinary.com/magicmarcos/image/upload/v1651688364/lhstddub8mb1lav6uek4.png',
   },
   email: { type: String, unique: true },
-  password: String,
+  password: { type: String },
 });
 
 // Password hash middleware.
