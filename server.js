@@ -9,12 +9,10 @@ import dotenv from 'dotenv';
 import passportConfig from './config/passport.js';
 // TODO: stretch goal - include flash messages
 // import flash from 'express-flash';
-
+import { httpServer, app } from './middleware/socket-io.js';
 // !Routes
 import mainRoutes from './routes/main.js';
 import postRoutes from './routes/posts.js';
-
-const app = express();
 
 dotenv.config({ path: './config/.env' });
 
@@ -56,6 +54,8 @@ app.use(passport.session());
 app.use('/', mainRoutes);
 app.use('/post', postRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log('Server is running.');
-});
+// app.listen( () => {
+//   console.log('Server is running.');
+// });
+
+httpServer.listen(process.env.PORT);
