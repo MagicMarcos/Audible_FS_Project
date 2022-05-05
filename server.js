@@ -3,7 +3,7 @@ import passport from 'passport';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import methodOverride from 'method-override';
-// import logger from 'morgan';
+import logger from 'morgan';
 import connectDB from './config/database.js';
 import dotenv from 'dotenv';
 import passportConfig from './config/passport.js';
@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Logging
-app.use(logger('dev'));
+// app.use(logger('dev'));
 
 //Use forms for put / delete
 app.use(methodOverride('_method'));
