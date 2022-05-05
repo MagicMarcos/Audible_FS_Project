@@ -24,7 +24,7 @@ router.post('/comment/:id', comment);
 
 router.put('/upVote/:id/:route', useSocket, upVote);
 
-router.put('/downVote/:id/:route', downVote);
+router.put('/downVote/:id/:route', useSocket, downVote);
 
 router.delete('/deletePost/:id', deletePost);
 

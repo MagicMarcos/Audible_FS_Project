@@ -2,11 +2,9 @@
 <html lang="en">
   <%-include('partials/head')-%>
 
-  <body 
-  style="
-    background-image: url('./img/back.jpg');
-    background-size: contain;">
-
+  <body
+    style="background-image: url('./img/back.jpg'); background-size: contain"
+  >
     <div class="container position-sticky z-index-sticky top-0">
       <div class="row">
         <div class="col-12">
@@ -65,7 +63,7 @@
         <div class="col-7">
           <%posts.forEach(post => { %>
           <div class="card mb-3">
-            <a style="margin-bottom: -15px;" href="/post/<%= post._id%>">
+            <a style="margin-bottom: -15px" href="/post/<%= post._id%>">
               <div class="d-flex flex-row">
                 <div
                   class="col-3 border-radius-lg m-2"
@@ -76,7 +74,6 @@
                     class="w-100 shadow-lg"
                     alt="..."
                   />
-
                 </div>
 
                 <div class="card-body">
@@ -87,39 +84,54 @@
                 </div>
               </div>
             </a>
-            <div style="display: flex; flex-direction: row;">
-              <form method="POST" action="../post/deletePost/<%=post._id%>?_method=DELETE">
-                <button  style="margin-left: 12px;"
-                type="submit"  class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-3 mt-md-0">Delete</button>
-                
-            </form>
-            
-            <form
-              method="POST"
-              action="/post/upVote/<%=post._id%>/feed?_method=PUT"
-              style="display: flex; flex-direction: row;"
-            >
-            <button type="submit" class="bg-transparent btn btn-pill btn-icon-only">
-            <span style="color: #E4316F; " ; class="fas fa-thumbs-up"></span> 
-            </button>
-            </form>
-            <form
-              action="/post/downVote/<%=post._id%>/feed?_method=PUT"
-              method="POST"
-            >
-            <button type="submit" class="bg-transparent btn btn-pill btn-icon-only">
-            <span style="color: #E4316F"; class="fas fa-thumbs-down"></span> 
-          </button>
-         
-            </form>
-            <p><%=post.likes%></p>
-          </div>
+            <div style="display: flex; flex-direction: row">
+              <form
+                method="POST"
+                action="../post/deletePost/<%=post._id%>?_method=DELETE"
+              >
+                <button
+                  style="margin-left: 12px"
+                  type="submit"
+                  class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-3 mt-md-0"
+                >
+                  Delete
+                </button>
+              </form>
 
+              <form
+                method="POST"
+                action="/post/upVote/<%=post._id%>/feed?_method=PUT"
+                style="display: flex; flex-direction: row"
+              >
+                <button
+                  type="submit"
+                  class="bg-transparent btn btn-pill btn-icon-only"
+                >
+                  <span
+                    style="color: #e4316f"
+                    ;
+                    class="fas fa-thumbs-up"
+                  ></span>
+                </button>
+              </form>
 
-
-
-
-
+              <form
+                action="/post/downVote/<%=post._id%>/feed?_method=PUT"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="bg-transparent btn btn-pill btn-icon-only"
+                >
+                  <span
+                    style="color: #e4316f"
+                    ;
+                    class="fas fa-thumbs-down"
+                  ></span>
+                </button>
+              </form>
+              <p id="<%=post._id%>"><%=post.likes%></p>
+            </div>
           </div>
           <%}) %>
         </div>
