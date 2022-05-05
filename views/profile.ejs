@@ -62,27 +62,17 @@
           <%posts.forEach(post => { %>
 
           <div class="card mb-3">
-            <a href="/post/<%= post._id%>">
+            <a style="margin-bottom: -15px;" href="/post/<%= post._id%>">
               <div class="d-flex flex-row">
                 <div
                   class="col-3 border-radius-lg m-2"
-                  style="height: 150px; overflow: hidden"
+                  style="height: 120px; overflow: hidden"
                 >
                   <img
                     src="<%= post.imageUrl%>"
                     class="w-100 shadow-lg"
                     alt="..."
-                    style="margin-bottom: 10px"
                   />
-
-                  <form method="POST" action="../post/deletePost/<%=post._id%>?_method=DELETE">
-                    <button 
-                    type="submit"  class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-3 mt-md-0">Delete</button>
-                    <i style="margin-left: 13px; color: #E4316F"; class="fas fa-thumbs-up"></i>
-               
-                    <i style="margin-left: 25px; color: #E4316F"; class="fas fa-thumbs-down"></i> 
-                    <span></span>
-                </form>
                   
                 </div>
 
@@ -94,19 +84,35 @@
                 </div>
               </div>
             </a>
+            
+               
+                    
+            <div style="display: flex; flex-direction: row;">
+              <form method="POST" action="../post/deletePost/<%=post._id%>?_method=DELETE">
+                <button  style="margin-left: 12px;"
+                type="submit"  class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-3 mt-md-0">Delete</button>
+                
+            </form>
+            
             <form
               method="POST"
               action="/post/upVote/<%=post._id%>/profile?_method=PUT"
+              style="display: flex; flex-direction: row;"
             >
-              <button type="submit">Like</button>
+            <button type="submit" class="bg-transparent btn btn-pill btn-icon-only">
+            <span style="color: #E4316F; " ; class="fas fa-thumbs-up"></span> 
+            </button>
             </form>
             <form
               action="/post/downVote/<%=post._id%>/profile?_method=PUT"
               method="POST"
             >
-              <button type="submit">Dislike</button>
+            <button type="submit" class="bg-transparent btn btn-pill btn-icon-only">
+            <span style="color: #E4316F"; class="fas fa-thumbs-down"></span> 
+          </button>         
             </form>
             <p><%=post.likes%></p>
+          </div>
           </div>
           <%}) %>
         </div>
