@@ -10,9 +10,7 @@ export const getFeed = async (req, res) => {
   const posts = await Post.find().sort({ datePosted: -1 });
 
   try {
-
     res.render('feed.ejs', { posts: posts, user: req.user });
-
   } catch (err) {
     console.log(err);
   }
@@ -30,12 +28,12 @@ export const getProfile = async (req, res) => {
   }
 };
 
-
 // Renders individual post page
 export const getPost = async (req, res) => {
   const post = await Post.findById({ _id: req.params.id });
   const comments = await Comment.find({ postId: req.params.id });
-  console.log(post);
+  const likes = post.upVotes.length - post.downVotes.length;
+  console.log(likes);
   try {
     res.render('post.ejs', { post: post, comments: comments });
   } catch (err) {
@@ -68,10 +66,18 @@ export const createPost = async (req, res) => {
 
 export const upVote = async (req, res) => {
   const id = req.params.id;
+  const userId = req.user.id;
   const route = req.params.route === 'post' ? `post/${id}` : req.params.route;
 
   try {
-    await Post.findByIdAndUpdate({ _id: id }, { $inc: { likes: 1 } });
+    const post = await Post.findById({ _id: id });
+
+    post.upVotes = updateVotes(post.upVotes, userId);
+    post.downVotes = removeVotes(post.downVotes, userId);
+    post.likes = post.upVotes.length - post.downVotes.length;
+
+    await post.save();
+
     res.redirect(`/${route}`);
   } catch (error) {
     console.error(error);
@@ -80,10 +86,17 @@ export const upVote = async (req, res) => {
 
 export const downVote = async (req, res) => {
   const id = req.params.id;
+  const userId = req.user.id;
   const route = req.params.route === 'post' ? `post/${id}` : req.params.route;
 
   try {
-    await Post.findByIdAndUpdate({ _id: id }, { $inc: { likes: -1 } });
+    const post = await Post.findById({ _id: id });
+
+    post.downVotes = updateVotes(post.downVotes, userId);
+    post.upVotes = removeVotes(post.upVotes, userId);
+    post.likes = post.upVotes.length - post.downVotes.length;
+
+    await post.save();
     res.redirect(`/${route}`);
   } catch (error) {
     console.error(error);
@@ -103,3 +116,19 @@ export const deletePost = async (req, res) => {
     console.error(error);
   }
 };
+
+function updateVotes(votes, userId) {
+  const voteSet = new Set(votes);
+  if (voteSet.has(userId)) {
+    voteSet.delete(userId);
+  } else {
+    voteSet.add(userId);
+  }
+  return [...voteSet];
+}
+
+function removeVotes(votes, userId) {
+  const voteSet = new Set(votes);
+  voteSet.delete(userId);
+  return [...voteSet];
+}

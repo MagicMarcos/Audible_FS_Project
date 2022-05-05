@@ -21,6 +21,12 @@ const PostSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  upVotes: {
+    type: Array,
+  },
+  downVotes: {
+    type: Array,
+  },
   userName: {
     type: String,
     required: true,

@@ -102,7 +102,10 @@
           >
             <button type="submit">Like</button>
           </form>
-          <form action="/downVote/<%=post._id%>" method="POST">
+          <form
+            method="POST"
+            action="/post/downVote/<%=post._id%>/post?_method=PUT"
+          >
             <button type="submit">Dislike</button>
           </form>
 
