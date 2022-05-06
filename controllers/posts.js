@@ -36,11 +36,13 @@ export const getPost = async (req, res) => {
   const post = await Post.findById({ _id: req.params.id });
   const comments = await Comment.find({ postId: req.params.id });
   const datePosted = moment(post.datePosted).fromNow();
+
   try {
     res.render('post.ejs', {
       post: post,
       comments: comments,
       datePosted: datePosted,
+      user: req.user,
     });
   } catch (err) {
     console.log(err);

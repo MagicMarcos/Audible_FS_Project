@@ -36,6 +36,13 @@
               >
                 <ul class="navbar-nav navbar-nav-hover ms-auto">
                   <li class="nav-item my-auto ms-3 ms-lg-0">
+                    <button
+                      type="submit"
+                      form="chatForm"
+                      class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
+                    >
+                      Join Chat Room
+                    </button>
                     <a href="/feed"
                       ><button
                         type="button"
@@ -172,6 +179,22 @@
         </div>
       </div>
     </div>
+    <form action="/chat" id="chatForm">
+      <input
+        type="text"
+        name="username"
+        id="username"
+        value="<%=user.name%>"
+        required
+      />
+      <input
+        type="text"
+        name="room"
+        id="room"
+        value="<%=post.title%>"
+        required
+      />
+    </form>
     <%-include('partials/scripts')-%>
   </body>
 </html>

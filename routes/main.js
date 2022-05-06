@@ -1,7 +1,7 @@
 import express from 'express';
 import { multerUploadConfig as upload } from '../middleware/multer.js';
 
-import { getIndex } from '../controllers/home.js';
+import { getIndex, getJoin, getChat } from '../controllers/home.js';
 import { getFeed, getProfile } from '../controllers/posts.js';
 import {
   getLogin,
@@ -32,4 +32,7 @@ router.put('/updateUser/:id', upload.single('file'), updateUser);
 
 router.get('/logout', logout);
 
+// ======== ROOM TRIAL =========
+router.get('/join', getJoin);
+router.get('/chat', getChat);
 export default router;

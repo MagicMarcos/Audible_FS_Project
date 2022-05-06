@@ -14,3 +14,4 @@ export const useSocket = (req, res, next) => {
     res.redirect('/');
   }
 };
+export default io;

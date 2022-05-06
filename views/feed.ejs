@@ -60,7 +60,7 @@
     <!-- !==========POSTLIST=========== -->
     <div class="container mt-5 pt-5">
       <div class="row pt-5">
-        <div class="col-7">
+        <div class="col-12 col-lg-7">
           <%posts.forEach(post => { %>
           <div class="card mb-3">
             <a style="margin-bottom: -15px" href="/post/<%= post._id%>">
@@ -118,15 +118,15 @@
                   ></span>
                 </button>
               </form>
-              <p class="mt-2" id="<%=post._id%>"><%=post.likes%></pcl>
+              <p class="mt-2" id="likes_<%=post._id%>"><%=post.likes%></pcl>
             </div>
           </div>
           <%}) %>
         </div>
 
         <!-- !User Card -->
-        <div class="col-5">
-          <div class="card card-profile my-4">
+        <div class="col-5 userCard">
+          <div class="card card-profile mb-4">
             <div class="row">
               <div class="col-lg-4 col-md-6 col-12 ">
                 <div class="p-3 pe-md-0">

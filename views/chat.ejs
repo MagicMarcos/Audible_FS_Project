@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>ChatCord App</title>
+  </head> -->
+  <%-include('partials/head')-%>
+  <body
+    style="background-image: url('./img/back.jpg'); background-size: contain"
+  >
+    <div class="container position-sticky z-index-sticky top-0">
+      <div class="row">
+        <div class="col-12">
+          <nav
+            class="navbar navbar-expand-lg blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4"
+          >
+            <div class="container-fluid px-0">
+              <img class="w-7" src="./img/7.png" />
+              <button
+                class="navbar-toggler shadow-none ms-2"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navigation"
+                aria-controls="navigation"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon mt-2">
+                  <span class="navbar-toggler-bar bar1"></span>
+                  <span class="navbar-toggler-bar bar2"></span>
+                  <span class="navbar-toggler-bar bar3"></span>
+                </span>
+              </button>
+              <div
+                class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100"
+                id="navigation"
+              >
+                <ul class="navbar-nav navbar-nav-hover ms-auto">
+                  <li class="nav-item my-auto ms-3 ms-lg-0">
+                    <a
+                      id="leave-btn"
+                      class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0"
+                      >Leave Room</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!-- End Navbar -->
+    <div
+      class="page-header align-items-start min-vh-100 mt-5 pt-3"
+      loading="lazy"
+    >
+      <span class="mask bg-gradient-dark opacity-6"></span>
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-12 col-md-8 mx-auto">
+            <div class="card z-index-0 fadeIn3 fadeInBottom">
+              <div
+                class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
+              >
+                <div
+                  class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1"
+                >
+                  <h4
+                    id="room-name"
+                    class="text-white font-weight-bolder text-center mt-2 mb-0"
+                  ></h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <main class="chat-main" style="height: 400px; overflow: auto">
+                  <div class="chat-sidebar">
+                    <h2 id="room-name"></h2>
+                    <h4><i class="fas fa-users"></i> Users</h4>
+                    <ul id="users"></ul>
+                  </div>
+                  <div class="chat-messages"></div>
+                </main>
+                <div class="text-center">
+                  <div>
+                    <form id="chat-form" class="row">
+                      <div
+                        class="input-group input-group-outline"
+                        style="width: 80%"
+                      >
+                        <input
+                          id="msg"
+                          type="text"
+                          placeholder="Enter Message"
+                          required
+                          autocomplete="off"
+                          class="form-control"
+                        />
+                      </div>
+                      <div style="width: 20%">
+                        <button class="btn bg-gradient-primary w-100 my-4 mb-2">
+                          <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%- include('partials/footer') -%>
+    </div>
+    <!-- !__________________________________________ -->
+    <!-- <div class="chat-container">
+      <header class="chat-header">
+        <h1><i class="fas fa-smile"></i> ChatCord</h1>
+        <a id="leave-btn" class="btn">Leave Room</a>
+      </header>
+      <main class="chat-main">
+        <div class="chat-sidebar">
+          <h3><i class="fas fa-comments"></i> Room Name:</h3>
+          <h2 id="room-name"></h2>
+          <h3><i class="fas fa-users"></i> Users</h3>
+          <ul id="users"></ul>
+        </div>
+        <div class="chat-messages"></div>
+      </main>
+      <div class="chat-form-container">
+        <form id="chat-form">
+          <input
+            id="msg"
+            type="text"
+            placeholder="Enter Message"
+            required
+            autocomplete="off"
+          />
+          <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+        </form>
+      </div>
+    </div> -->
+    <%-include('partials/scripts')-%>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
